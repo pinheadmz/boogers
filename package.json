@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "test": "bmocha test/*-test.js"
+  },
+  "dependencies": {
+    "bcrypto": "^5.4.0",
+    "bsert": "^0.0.12",
+    "ws": "^8.13.0"
+  },
+  "name": "boogers",
+  "version": "1.0.0",
+  "description": "Nostr client for bot posts",
+  "main": "lib/nostr.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinheadmz/boogers.git"
+  },
+  "keywords": [
+    "nostr",
+    "nodejs"
+  ],
+  "author": "Matthew Zipkin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinheadmz/boogers/issues"
+  },
+  "homepage": "https://github.com/pinheadmz/boogers#readme"
+}
