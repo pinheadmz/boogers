@@ -25,6 +25,8 @@ const pub = '32b061ccac2eb352570c95175ec6351b10f65611ec0a4c0009ba11cd56151880';
 const priv = 'af9d3d43510202b8d33a3006a66f707962a43d95c42fa82f4a4f06d0d84fae0b';
 
 describe('Nostr', function () {
+  this.timeout(10000);
+
   it('should generate keys', () => {
     Keys.generate();
   });
@@ -77,10 +79,11 @@ describe('Nostr', function () {
     await Relay.sendEventToRelays(
       event,
       [
-        'wss://nos.lol',
+        'wss://nos.lol',            // might require POW
+        'wss://google.com',         // unexpected response
         'wss://relay.damus.io',
         'wss://offchain.pub',
-        'wss://relay.snqort.social' // no active subscription
+        'wss://relay.snort.social'  // no active subscription
       ]);
   });
 });
