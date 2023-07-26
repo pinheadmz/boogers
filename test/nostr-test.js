@@ -126,18 +126,30 @@ describe('Nostr', function () {
 
     it('should parse zap receipt', () => {
       const rec = new Event(json);
+      assert(rec.verify());
       const p = rec.getTagValue('p');
       assert.strictEqual(p, 'a3eb29554bd27fca7f53f66272e4bb59d066f2f31708cf341540cb4729fbd841');
       const es = rec.getTagValues('e');
       assert.deepStrictEqual(es, ['a97669890f6645441887f3a1ccb38e57023403ad5b2368fbd8e8efc804eec4bc']);
       desc = rec.getTagValue('description');
+
+      assert.deepStrictEqual(json, rec.getJSON());
     });
 
     it('should parse zap request', () => {
       const req = new Event(JSON.parse(desc));
+      assert.deepStrictEqual(JSON.parse(desc), req.getJSON());
+      assert(req.verify());
       const relays = req.getTagValues('relays');
       assert(Array.isArray(relays));
       assert.strictEqual(relays.length, 10);
+
+      assert.throws(() => {
+        req.getTagValue('relays');
+      });
+
+      assert.strictEqual(req.getTagValue('blah'), null);
+      assert.deepStrictEqual(req.getTagValues('blah'), []);
     });
   });
 });
